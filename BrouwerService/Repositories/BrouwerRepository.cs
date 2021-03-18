@@ -30,5 +30,7 @@ namespace BrouwerService.Repositories
             context.Brouwers.Update(brouwer); 
             context.SaveChanges(); 
         }
+
+        
     }
 }
