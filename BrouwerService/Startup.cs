@@ -30,9 +30,17 @@ namespace BrouwerService
 
             //services.AddControllers();
             services.AddControllers().AddXmlDataContractSerializerFormatters();
+
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BrouwerService", Version = "v1" });
+               
+            //});
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BrouwerService", Version = "v1" });
+                c.EnableAnnotations();
             });
 
             services.AddDbContext<BierlandContext>(options => 
@@ -47,7 +55,19 @@ namespace BrouwerService
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
+                //app.UseSwagger();
+
+                app.UseSwagger(c => c.PreSerializeFilters.Add((swagger, request) => 
+                                                               swagger.Servers = new List<OpenApiServer> 
+                                                               { 
+                                                                    new OpenApiServer 
+                                                                    {
+                                                                         Url = $"{request.Scheme}://{request.Host.Value}" 
+                                                                    } 
+                                                               }
+                                                              ));
+
+
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BrouwerService v1"));
             }
 
