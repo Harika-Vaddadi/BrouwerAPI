@@ -49,32 +49,42 @@ namespace BrouwerService.Controllers
 
         [HttpPost] 
         public ActionResult Post(Brouwer brouwer)  
-        { 
-            repository.Insert(brouwer);
-            return base.CreatedAtAction(nameof(FindById), new
+        {
+            if (this.ModelState.IsValid)
             {
-                id = brouwer.Id
-            }, 
-            null); 
+                repository.Insert(brouwer);
+                return base.CreatedAtAction(nameof(FindById), new
+                {
+                    id = brouwer.Id
+                },
+                null);
+            }
+            //return base.BadRequest();
+            return base.BadRequest(this.ModelState);
         }
 
         [HttpPut("{id}")] 
         public ActionResult Put(int id, Brouwer brouwer) 
-        {  
-            try  
-            { 
-                brouwer.Id = id; 
-                repository.Update(brouwer); 
-                return base.Ok(); 
+        {
+            if (this.ModelState.IsValid)
+            {
+                try  
+                { 
+                    brouwer.Id = id; 
+                    repository.Update(brouwer); 
+                    return base.Ok(); 
+                }
+                catch (DbUpdateConcurrencyException)   
+                {
+                    return base.NotFound(); 
+                } 
+                catch 
+                {
+                    return base.Problem(); 
+                }
             }
-            catch (DbUpdateConcurrencyException)   
-            {
-                return base.NotFound(); 
-            } 
-            catch 
-            {
-                return base.Problem(); 
-            } 
+            //return base.BadRequest();
+            return base.BadRequest(this.ModelState);
         } 
 
 
