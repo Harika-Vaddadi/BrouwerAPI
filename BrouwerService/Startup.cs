@@ -27,15 +27,7 @@ namespace BrouwerService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //services.AddControllers();
-            services.AddControllers().AddXmlDataContractSerializerFormatters();
-
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BrouwerService", Version = "v1" });
-               
-            //});
+            services.AddControllers().AddXmlDataContractSerializerFormatters();          
 
             services.AddSwaggerGen(c =>
             {
@@ -47,6 +39,16 @@ namespace BrouwerService
             options.UseSqlServer(Configuration.GetConnectionString("bierland"))); 
 
             services.AddScoped<IBrouwerRepository, BrouwerRepository>();
+
+            services.AddCors();
+
+
+            //services.AddControllers();
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BrouwerService", Version = "v1" });
+
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +76,8 @@ namespace BrouwerService
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
