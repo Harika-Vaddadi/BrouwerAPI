@@ -28,7 +28,8 @@ namespace BrouwerService
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            //services.AddControllers();
+            services.AddControllers().AddXmlDataContractSerializerFormatters();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BrouwerService", Version = "v1" });
