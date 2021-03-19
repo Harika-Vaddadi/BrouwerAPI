@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BrouwerService.Models;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Net.Http;
 
 namespace BrouwerService.Controllers
 {
@@ -15,8 +16,13 @@ namespace BrouwerService.Controllers
     [ApiController]
     public class BrouwerController : ControllerBase
     {
-        private readonly IBrouwerRepository repository; 
-        public BrouwerController(IBrouwerRepository repository) => this.repository = repository;
+        private readonly IBrouwerRepository repository;
+        private readonly IHttpClientFactory clientFactory;
+        public BrouwerController(IBrouwerRepository repository, IHttpClientFactory clientFactory)
+        {
+            this.repository = repository;
+            this.clientFactory = clientFactory;
+        }
 
         [HttpGet]
         [SwaggerOperation("Alle brouwers")]

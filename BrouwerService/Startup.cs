@@ -42,6 +42,8 @@ namespace BrouwerService
 
             services.AddCors();
 
+            services.AddHttpClient();
+
 
             //services.AddControllers();
             //services.AddSwaggerGen(c =>
