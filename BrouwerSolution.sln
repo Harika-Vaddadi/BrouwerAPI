@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrouwerWebApp", "BrouwerWeb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrouwerServiceUnitTests", "BrouwerServiceUnitTests\BrouwerServiceUnitTests.csproj", "{FC5297DF-0415-4339-8E03-34C6EE5A4A39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrouwerServiceIntegrationTests", "BrouwerServiceIntegrationTests\BrouwerServiceIntegrationTests.csproj", "{1AB0C75C-B90A-467A-9B85-CF71BBC6A66F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{FC5297DF-0415-4339-8E03-34C6EE5A4A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC5297DF-0415-4339-8E03-34C6EE5A4A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC5297DF-0415-4339-8E03-34C6EE5A4A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AB0C75C-B90A-467A-9B85-CF71BBC6A66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB0C75C-B90A-467A-9B85-CF71BBC6A66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB0C75C-B90A-467A-9B85-CF71BBC6A66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB0C75C-B90A-467A-9B85-CF71BBC6A66F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
