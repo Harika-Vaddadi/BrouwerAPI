@@ -19,6 +19,11 @@ namespace BrouwerService.Controllers
     {
         private readonly IBrouwerRepository repository;
         private readonly IHttpClientFactory clientFactory;
+
+        public BrouwerController(IBrouwerRepository repository)
+        {
+            this.repository = repository;
+        }
         public BrouwerController(IBrouwerRepository repository, IHttpClientFactory clientFactory)
         {
             this.repository = repository;
