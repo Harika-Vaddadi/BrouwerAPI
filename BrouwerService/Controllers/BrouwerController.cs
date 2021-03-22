@@ -24,11 +24,12 @@ namespace BrouwerService.Controllers
         {
             this.repository = repository;
         }
-        public BrouwerController(IBrouwerRepository repository, IHttpClientFactory clientFactory)
-        {
-            this.repository = repository;
-            this.clientFactory = clientFactory;
-        }
+       
+        //public BrouwerController(IBrouwerRepository repository, IHttpClientFactory clientFactory)
+        //{
+        //    this.repository = repository;
+        //    this.clientFactory = clientFactory;
+        //}
 
         [HttpGet]
         [SwaggerOperation("Alle brouwers")]
