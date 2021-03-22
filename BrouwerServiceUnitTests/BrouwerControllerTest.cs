@@ -7,6 +7,7 @@ using Moq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
 
 namespace BrouwerServiceUnitTests
 {
@@ -14,7 +15,9 @@ namespace BrouwerServiceUnitTests
     public class BrouwerControllerTest
     {
         private BrouwerController controller; 
-        private Mock<IBrouwerRepository> mock; 
+        private Mock<IBrouwerRepository> mock;
+        private Mock<IHttpClientFactory> mockHttp;
+
         private Brouwer brouwer7; 
         private Brouwer brouwer9;
 
@@ -22,8 +25,11 @@ namespace BrouwerServiceUnitTests
         public void Initialize() 
         { 
             mock = new Mock<IBrouwerRepository>();
-            var repository = mock.Object; 
-            controller = new BrouwerController(repository); 
+            mockHttp = new Mock<IHttpClientFactory>();
+            var repository = mock.Object;
+            var httpclient = mockHttp.Object;
+            controller = new BrouwerController(repository,httpclient);
+            //controller = new BrouwerController(repository);
             brouwer7 = new Brouwer { Id = 7, Naam = "7", Postcode = 7000, Gemeente = "7" }; 
             brouwer9 = new Brouwer { Id = 9, Naam = "9", Postcode = 9000, Gemeente = "9" }; 
         }

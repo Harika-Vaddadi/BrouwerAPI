@@ -16,16 +16,18 @@ namespace BrouwerServiceIntegrationTests
     public class BrouwerControllerTest
     {
         private HttpClient client; 
-        private Mock<IBrouwerRepository> mock; 
+        private Mock<IBrouwerRepository> mock;
+       // private Mock<IHttpClientFactory> mockHttp;
         private Brouwer brouwer1;
 
         [TestInitialize]
         public void TestInitialize() 
         { 
             mock = new Mock<IBrouwerRepository>(); 
-            var repository = mock.Object; 
-            var factory = new WebApplicationFactory<BrouwerService.Startup>(); 
-            client = factory.WithWebHostBuilder(builder => 
+            var repository = mock.Object;
+            //var httpClient = mockHttp.Object;
+            var factory = new WebApplicationFactory<BrouwerService.Startup>();
+            client = factory.WithWebHostBuilder(builder =>
                      builder.ConfigureTestServices(services =>
                      services.AddScoped<IBrouwerRepository>(_ => repository))) 
                              .CreateClient(); 
@@ -61,7 +63,7 @@ namespace BrouwerServiceIntegrationTests
         public void GetMetBestaandeBrouwerGeeftOK()
         {
             mock.Setup(repo => repo.FindByIdAsync(1)).Returns(Task.FromResult(brouwer1));
-            var response = client.GetAsync("brouwers/1").Result; 
+            var response = client.GetAsync("brouwers/1").Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode); 
             mock.Verify(repo => repo.FindByIdAsync(1)); 
             var body = response.Content.ReadAsStringAsync().Result;

@@ -15,12 +15,12 @@ namespace BrouwerWebApp.Controllers
     {
         private readonly IBrouwerRepository repository; 
         public BrouwerController(IBrouwerRepository repository) => this.repository = repository;
-        
-        [HttpGet("{id}")] 
-        public async Task<ActionResult> FindById(int id) 
-        { 
-            var brouwer = await repository.FindByIdAsync(id); 
-            return brouwer == null ? base.NotFound() : base.Ok(brouwer); 
-        }
+
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult> FindMetId(int id)
+        //{
+        //    var brouwer = await repository.FindByIdAsync(id);
+        //    return brouwer == null ? base.NotFound() : base.Ok(brouwer);
+        //}
     }
 }
